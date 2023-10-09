@@ -1,6 +1,7 @@
 package eu.example.thehangman
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
@@ -14,17 +15,17 @@ import android.widget.TextView
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-class MainActivity : AppCompatActivity() {
+class Game : AppCompatActivity() {
     // Setting up timer
-    var isRunning = false
+    private var isRunning = false
     var timerSeconds = 0
     val handler = Handler(Looper.getMainLooper())
-    val runable = object : Runnable {
+    private val runnable = object : Runnable {
         override fun run() {
             timerSeconds ++
             val hours = timerSeconds / 3600
             val minutes = (timerSeconds % 3600) / 60
-            var seconds = timerSeconds % 60
+            val seconds = timerSeconds % 60
             val time = String.format("%02d:%02d:%02d", hours, minutes, seconds)
             val timer = findViewById<TextView>(R.id.timer)
             timer.text = time
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val nouns = InputStreamReader(assets.open("nouns.csv"))
         val readerNouns = BufferedReader(nouns)
         val nounList = readerNouns.readLines()
-        var mutableNounList = nounList.toMutableList()
+        val mutableNounList = nounList.toMutableList()
         val secret = mutableNounList.random().uppercase()
         val secretCharArray = secret.toCharArray().distinct()
 
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         val secretTV = findViewById<TextView>(R.id.secret)
         secretTV.text = " _ ".repeat(secret.length)
         val lifeCounterTv = findViewById<TextView>(R.id.life_counter)
+        lifeCounterTv.text = "❤️".repeat(setDifficulty())
         val q = findViewById<Button>(R.id.q)
         val w = findViewById<Button>(R.id.w)
         val e = findViewById<Button>(R.id.e)
@@ -77,6 +79,12 @@ class MainActivity : AppCompatActivity() {
 
         val buttons =
             arrayOf(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z)
+
+        val menuButton = findViewById<Button>(R.id.menu)
+        menuButton.setOnClickListener{
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        }
 
         fun checkWinLoss(){
             val winDialog = Dialog(this)
@@ -112,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                 var toDisplay = ""
                 for (char in secret){
                     toDisplay += if (char in guessedLetters){
-                        " $char "
+                        "$char"
                     }else {
                         " _ "
                     }
@@ -126,7 +134,7 @@ class MainActivity : AppCompatActivity() {
         for (button in buttons) {
             button.setOnClickListener {
                 if (!isRunning){
-                    handler.postDelayed(runable, 1000)
+                    handler.postDelayed(runnable, 1000)
                     isRunning = true
                 }
                 checkInput(secret, button.text[0])
@@ -137,5 +145,23 @@ class MainActivity : AppCompatActivity() {
                 button.isEnabled = false
             }
         }
+    }
+    private fun setDifficulty(): Int {
+        println(intent.getStringExtra("difficulty"))
+        when (intent.getStringExtra("difficulty")) {
+            "0" -> {
+                return 10
+            }
+            "1" -> {
+                return 8
+            }
+            "2" -> {
+                return 6
+            }
+        }
+        return 8
+    }
+    fun setLength(): Int {
+        return intent.getStringExtra("length")!!.toInt()
     }
 }
