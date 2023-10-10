@@ -102,6 +102,9 @@ class Game : AppCompatActivity() {
                 lossDialog.dismiss()
             }
             if ("❤️" !in lifeCounterTv.text){
+                val secretReveal = lossDialog.findViewById<TextView>(R.id.secretReveal)
+                val revealText = "The word you were looking for was:\n\n$secret"
+                secretReveal.text = revealText
                 lossDialog.show()
             }else if(guessedLetters.size == secretCharArray.size){
                 winDialog.show()

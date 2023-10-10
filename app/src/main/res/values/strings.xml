@@ -5,6 +5,7 @@
     <string name="secret_word">secret word</string>
     <string name="number_of_lifes">"Number of lives:   "</string>
     <string name="letters_in_word">"Letters in word:  "</string>
+    <string name="secret_reveal">"The word you were looking for was:"</string>
     <string name="q">Q</string>
     <string name="w">W</string>
     <string name="e">E</string>
