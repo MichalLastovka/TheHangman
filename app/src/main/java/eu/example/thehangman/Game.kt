@@ -37,15 +37,11 @@ class Game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val nouns = InputStreamReader(assets.open("nouns.csv"))
-        val readerNouns = BufferedReader(nouns)
-        val nounList = readerNouns.readLines()
-        val mutableNounList = nounList.toMutableList()
-        val secret = mutableNounList.random().uppercase()
+
+        val secret = pickWord()
+        println(secret)
         val secretCharArray = secret.toCharArray().distinct()
-
         val guessedLetters = mutableListOf<Char>()
-
         val secretTV = findViewById<TextView>(R.id.secret)
         secretTV.text = " _ ".repeat(secret.length)
         val lifeCounterTv = findViewById<TextView>(R.id.life_counter)
@@ -96,7 +92,6 @@ class Game : AppCompatActivity() {
             winOKButton.setOnClickListener {
                 winDialog.dismiss()
             }
-
             val lossDialog = Dialog(this)
             lossDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             lossDialog.setCancelable(false)
@@ -106,7 +101,7 @@ class Game : AppCompatActivity() {
             lossOKButton.setOnClickListener {
                 lossDialog.dismiss()
             }
-            if (lifeCounterTv.text.length <= 5){
+            if ("❤️" !in lifeCounterTv.text){
                 lossDialog.show()
             }else if(guessedLetters.size == secretCharArray.size){
                 winDialog.show()
@@ -122,12 +117,14 @@ class Game : AppCompatActivity() {
                     toDisplay += if (char in guessedLetters){
                         "$char"
                     }else {
-                        " _ "
+                        " _"
                     }
                 }
                 secretTV.text = toDisplay
+                checkWinLoss()
             }else{
-                lifeCounterTv.text = lifeCounterTv.text.removeRange(0, 3)
+                lifeCounterTv.text = (lifeCounterTv.text as String).replaceFirst("❤️", "🖤")
+                checkWinLoss()
             }
         }
 
@@ -147,7 +144,6 @@ class Game : AppCompatActivity() {
         }
     }
     private fun setDifficulty(): Int {
-        println(intent.getStringExtra("difficulty"))
         when (intent.getStringExtra("difficulty")) {
             "0" -> {
                 return 10
@@ -161,7 +157,15 @@ class Game : AppCompatActivity() {
         }
         return 8
     }
-    fun setLength(): Int {
+    private fun setLength(): Int {
         return intent.getStringExtra("length")!!.toInt()
+    }
+
+    private fun pickWord(): String {
+        val nouns = InputStreamReader(assets.open("nouns.csv"))
+        val readerNouns = BufferedReader(nouns)
+        val nounList = readerNouns.readLines()
+        val mutableNounList = nounList.filter { it.length == setLength() }.toMutableList()
+        return mutableNounList.random().uppercase()
     }
 }
