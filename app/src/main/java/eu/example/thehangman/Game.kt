@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -12,6 +13,8 @@ import android.os.Looper
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -38,6 +41,8 @@ class Game : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+
+
         val secret = pickWord()
         println(secret)
         val secretCharArray = secret.toCharArray().distinct()
@@ -45,6 +50,7 @@ class Game : AppCompatActivity() {
         val secretTV = findViewById<TextView>(R.id.secret)
         secretTV.text = " _ ".repeat(secret.length)
         val lifeCounterTv = findViewById<TextView>(R.id.life_counter)
+        var lifeCount = setDifficulty()
         lifeCounterTv.text = "❤️".repeat(setDifficulty())
         val q = findViewById<Button>(R.id.q)
         val w = findViewById<Button>(R.id.w)
@@ -88,9 +94,24 @@ class Game : AppCompatActivity() {
             winDialog.setCancelable(false)
             winDialog.setContentView(R.layout.win_dialog)
             winDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            val winOKButton = winDialog.findViewById<Button>(R.id.win_ok)
+            val winOKButton = winDialog.findViewById<AppCompatImageButton>(R.id.win_dialog_cancel)
             winOKButton.setOnClickListener {
                 winDialog.dismiss()
+            }
+            val winRepeatButton = winDialog.findViewById<AppCompatButton>(R.id.win_new_repeat)
+            val newDiff = intent.getStringExtra("difficulty")
+            val newLength = intent.getStringExtra("length")
+            winRepeatButton.setOnClickListener {
+                val intent = Intent(this, Game::class.java).also {
+                    it.putExtra("length", newLength)
+                    it.putExtra("difficulty", newDiff)
+                }
+                startActivity(intent)
+            }
+            val backSettings = winDialog.findViewById<AppCompatButton>(R.id.win_back_to_settings)
+            backSettings.setOnClickListener {
+                val intent = Intent(this, GameSettings::class.java)
+                startActivity(intent)
             }
             val lossDialog = Dialog(this)
             lossDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -102,11 +123,21 @@ class Game : AppCompatActivity() {
                 lossDialog.dismiss()
             }
             if ("❤️" !in lifeCounterTv.text){
-                val secretReveal = lossDialog.findViewById<TextView>(R.id.secretReveal)
+                val secretRevealLoss = lossDialog.findViewById<TextView>(R.id.secretRevealLoss)
                 val revealText = "The word you were looking for was:\n\n$secret"
-                secretReveal.text = revealText
+                secretRevealLoss.text = revealText
+                handler.removeCallbacks(runnable)
+                isRunning = false
+                lifeCount -= 1
                 lossDialog.show()
             }else if(guessedLetters.size == secretCharArray.size){
+                val secretRevealWin = winDialog.findViewById<TextView>(R.id.secretRevealWin)
+                handler.removeCallbacks(runnable)
+                isRunning = false
+                val timer = findViewById<TextView>(R.id.timer)
+                val seconds = timerSeconds % 60
+                val revealText = "The word is truly:\n$secret\n\nTotal time:\n${timer.text}\n\nYour score is:\n${countScore(seconds, setDifficulty(), setLength(), lifeCount).toString()}"
+                secretRevealWin.text = revealText
                 winDialog.show()
             }
         }
@@ -126,6 +157,8 @@ class Game : AppCompatActivity() {
                 secretTV.text = toDisplay
                 checkWinLoss()
             }else{
+                val duckSound = MediaPlayer.create(this, R.raw.duck)
+                duckSound.start()
                 lifeCounterTv.text = (lifeCounterTv.text as String).replaceFirst("❤️", "🖤")
                 checkWinLoss()
             }
@@ -170,5 +203,10 @@ class Game : AppCompatActivity() {
         val nounList = readerNouns.readLines()
         val mutableNounList = nounList.filter { it.length == setLength() }.toMutableList()
         return mutableNounList.random().uppercase()
+    }
+
+    fun countScore(time:Int, difficulty:Int, length:Int, livesLeft:Int): Int{
+        val score = (livesLeft * 50) - time - (length * 5) - (difficulty * 10)
+        return score
     }
 }

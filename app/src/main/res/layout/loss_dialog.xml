@@ -27,7 +27,7 @@
                 android:text="You lost!"
                 android:textSize="30sp" />
             <TextView
-                android:id="@+id/secretReveal"
+                android:id="@+id/secretRevealLoss"
                 android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
