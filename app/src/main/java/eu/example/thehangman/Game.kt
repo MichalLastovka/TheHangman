@@ -118,9 +118,24 @@ class Game : AppCompatActivity() {
             lossDialog.setCancelable(false)
             lossDialog.setContentView(R.layout.loss_dialog)
             lossDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            val lossOKButton = lossDialog.findViewById<Button>(R.id.loss_ok)
+            val lossOKButton = lossDialog.findViewById<AppCompatImageButton>(R.id.loss_dialog_cancel)
             lossOKButton.setOnClickListener {
                 lossDialog.dismiss()
+            }
+            val lossRepeatButton = lossDialog.findViewById<AppCompatButton>(R.id.loss_new_repeat)
+            val newDiffLoss = intent.getStringExtra("difficulty")
+            val newLengthLoss = intent.getStringExtra("length")
+            lossRepeatButton.setOnClickListener {
+                val intent = Intent(this, Game::class.java).also {
+                    it.putExtra("length", newLengthLoss)
+                    it.putExtra("difficulty", newDiffLoss)
+                }
+                startActivity(intent)
+            }
+            val backSettingsLoss = lossDialog.findViewById<AppCompatButton>(R.id.loss_back_to_settings)
+            backSettingsLoss.setOnClickListener {
+                val intent = Intent(this, GameSettings::class.java)
+                startActivity(intent)
             }
             if ("❤️" !in lifeCounterTv.text){
                 val secretRevealLoss = lossDialog.findViewById<TextView>(R.id.secretRevealLoss)
@@ -129,6 +144,8 @@ class Game : AppCompatActivity() {
                 handler.removeCallbacks(runnable)
                 isRunning = false
                 lifeCount -= 1
+                val failSound = MediaPlayer.create(this, R.raw.fail)
+                failSound.start()
                 lossDialog.show()
             }else if(guessedLetters.size == secretCharArray.size){
                 val secretRevealWin = winDialog.findViewById<TextView>(R.id.secretRevealWin)
@@ -138,6 +155,8 @@ class Game : AppCompatActivity() {
                 val seconds = timerSeconds % 60
                 val revealText = "The word is truly:\n$secret\n\nTotal time:\n${timer.text}\n\nYour score is:\n${countScore(seconds, setDifficulty(), setLength(), lifeCount).toString()}"
                 secretRevealWin.text = revealText
+                val fanfareSound = MediaPlayer.create(this, R.raw.fanfare)
+                fanfareSound.start()
                 winDialog.show()
             }
         }
@@ -145,13 +164,15 @@ class Game : AppCompatActivity() {
         fun checkInput(secret: String, guess: Char) {
             checkWinLoss()
             if (guess in secret) {
+                val ringSound = MediaPlayer.create(this, R.raw.bell)
+                ringSound.start()
                 guessedLetters.add(guess)
                 var toDisplay = ""
                 for (char in secret){
                     toDisplay += if (char in guessedLetters){
                         "$char"
                     }else {
-                        " _"
+                        " _ "
                     }
                 }
                 secretTV.text = toDisplay
@@ -175,6 +196,7 @@ class Game : AppCompatActivity() {
                 button.apply {
                     paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 }
+                button.setBackgroundResource(R.drawable.disabled_btn)
                 button.isEnabled = false
             }
         }

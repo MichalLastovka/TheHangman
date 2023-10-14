@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="You win!"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -42,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:text="You win!"
                 android:textSize="20sp" />
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -57,6 +59,7 @@
                     android:drawableTop="@drawable/baseline_autorenew_24"
                     android:background="@android:color/transparent"
                     android:textSize="12sp"
+                    android:textColor="@color/black"
                     android:text="New"/>
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/win_back_to_settings"
@@ -65,6 +68,7 @@
                     android:drawableTop="@drawable/baseline_settings_24"
                     android:background="@android:color/transparent"
                     android:textSize="12sp"
+                    android:textColor="@color/black"
                     android:text="Menu"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
