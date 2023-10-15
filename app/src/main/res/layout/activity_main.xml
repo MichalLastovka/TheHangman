@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/q"/>
 
@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/w"/>
 
@@ -75,7 +75,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/e"/>
 
@@ -85,7 +85,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/r"/>
 
@@ -95,7 +95,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/t"/>
 
@@ -105,7 +105,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/z"/>
 
@@ -115,7 +115,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/u"/>
 
@@ -125,7 +125,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/i"/>
 
@@ -135,7 +135,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/o"/>
 
@@ -145,7 +145,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/p"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -164,7 +164,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/a"/>
 
@@ -174,7 +174,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/s"/>
 
@@ -184,7 +184,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/d"/>
 
@@ -194,7 +194,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/f"/>
 
@@ -204,7 +204,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/g"/>
 
@@ -214,7 +214,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/h"/>
 
@@ -224,7 +224,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/j"/>
 
@@ -234,7 +234,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/k"/>
 
@@ -244,7 +244,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/l"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -262,7 +262,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/y"
             tools:layout_editor_absoluteX="43dp"/>
@@ -273,7 +273,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/x"/>
 
@@ -283,7 +283,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/c"/>
 
@@ -293,7 +293,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/v"/>
 
@@ -303,7 +303,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/n"/>
 
@@ -313,7 +313,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/m"/>
 
@@ -323,7 +323,7 @@
             android:layout_weight="1"
             android:layout_height="36dp"
             android:textColor="@color/black"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/b"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -332,6 +332,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="menu"/>
+        android:text="@string/menu_game"/>
 
 </LinearLayout>

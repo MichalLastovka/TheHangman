@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose difficulty: "
+        android:text="@string/choose_difficulty"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"/>
@@ -20,7 +20,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pick the word length:"
+        android:text="@string/pick_the_word_length"
         android:gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"/>
@@ -32,12 +32,12 @@
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"/>
+        android:text="@string/start"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/backButton"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"/>
+        android:text="@string/back"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

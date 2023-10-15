@@ -40,9 +40,6 @@ class Game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
         val secret = pickWord()
         println(secret)
         val secretCharArray = secret.toCharArray().distinct()

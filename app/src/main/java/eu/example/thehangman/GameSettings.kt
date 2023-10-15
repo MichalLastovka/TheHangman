@@ -12,7 +12,7 @@ class GameSettings : AppCompatActivity() {
         setContentView(R.layout.activity_game_settings)
 
         val difficultyPicker = findViewById<NumberPicker>(R.id.difficultyPicker)
-        val values = arrayOf("Easy", "Medium", "Hard")
+        val values = arrayOf(getString(R.string.diff_easy), getString(R.string.diff_medium), getString(R.string.diff_hard))
         difficultyPicker.displayedValues = values
         difficultyPicker.minValue = 0
         difficultyPicker.maxValue = values.size - 1
