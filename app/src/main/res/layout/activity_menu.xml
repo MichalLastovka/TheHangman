@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center">
+    android:gravity="center|top">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/language"
