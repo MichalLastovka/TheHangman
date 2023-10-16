@@ -136,7 +136,7 @@ class Game : AppCompatActivity() {
             }
             if ("❤️" !in lifeCounterTv.text){
                 val secretRevealLoss = lossDialog.findViewById<TextView>(R.id.secretRevealLoss)
-                val revealText = "The word you were looking for was:\n\n$secret"
+                val revealText = "${getString(R.string.secret_reveal)}\n\n$secret"
                 secretRevealLoss.text = revealText
                 handler.removeCallbacks(runnable)
                 isRunning = false
@@ -150,7 +150,7 @@ class Game : AppCompatActivity() {
                 isRunning = false
                 val timer = findViewById<TextView>(R.id.timer)
                 val seconds = timerSeconds % 60
-                val revealText = "The word is truly:\n$secret\n\nTotal time:\n${timer.text}\n\nYour score is:\n${countScore(seconds, setDifficulty(), setLength(), lifeCount).toString()}"
+                val revealText = "${getString(R.string.you_win_reveal)}\n$secret\n\n${getString(R.string.total_time)}\n${timer.text}\n\n${getString(R.string.your_score_is)}\n${countScore(seconds, setDifficulty(), setLength(), lifeCount).toString()}"
                 secretRevealWin.text = revealText
                 val fanfareSound = MediaPlayer.create(this, R.raw.fanfare)
                 fanfareSound.start()

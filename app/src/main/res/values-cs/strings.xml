@@ -23,4 +23,6 @@
     <string name="diff_easy">Lehká</string>
     <string name="diff_medium">Střední</string>
     <string name="diff_hard">Těžká</string>
+    <string name="total_time">"Celkový čas: "</string>
+    <string name="your_score_is">"Vaše skóre je: "</string>
 </resources>

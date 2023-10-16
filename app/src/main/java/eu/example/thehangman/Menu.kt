@@ -21,14 +21,12 @@ class Menu : AppCompatActivity() {
             val intent = Intent(this, GameSettings::class.java)
             startActivity(intent)
         }
-
+        setFlag()
         val languageButton = findViewById<AppCompatImageButton>(R.id.language)
-        println(resources.configuration.locales.get(0))
 
         languageButton.setOnClickListener{
-            println(Locale.getDefault().displayLanguage)
             var locale : Locale
-            if (resources.configuration.locales.get(0) == Locale("en")){
+            if (resources.configuration.locales.get(0).toString() == "en" || resources.configuration.locales.get(0).toString() == "en_US"){
                 locale = Locale("cs")
                 var res = resources
                 var dm = res.displayMetrics
@@ -37,7 +35,6 @@ class Menu : AppCompatActivity() {
                 res.updateConfiguration(conf, dm)
                 var refresh = Intent(Menu@this, Menu::class.java)
                 startActivity(refresh)
-                languageButton.setImageResource(R.drawable.eng)
             }else{
                 languageButton.setImageResource(R.drawable.cze)
                 locale = Locale("en")
@@ -48,8 +45,16 @@ class Menu : AppCompatActivity() {
                 res.updateConfiguration(conf, dm)
                 var refresh = Intent(Menu@this, Menu::class.java)
                 startActivity(refresh)
-                languageButton.setImageResource(R.drawable.cze)
             }
+        }
+    }
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun setFlag(){
+        val languageButton = findViewById<AppCompatImageButton>(R.id.language)
+        if (resources.configuration.locales.get(0).toString() == "cs"){
+            languageButton.setImageResource(R.drawable.eng)
+        }else{
+            languageButton.setImageResource(R.drawable.cze)
         }
     }
 }

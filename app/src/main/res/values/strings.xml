@@ -55,4 +55,6 @@
     <string name="diff_easy">Easy</string>
     <string name="diff_medium">Medium</string>
     <string name="diff_hard">Hard</string>
+    <string name="total_time">Total time:</string>
+    <string name="your_score_is">Your score is:</string>
 </resources>
