@@ -39,7 +39,108 @@
         android:text="@string/secret_word"
         android:textSize="40sp"
         android:textStyle="bold"/>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/keyboard1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:layout_marginHorizontal="3dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ě"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/je"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/š"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/sh"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/č"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/tch"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ř"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/rzh"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ž"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/zh"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ý"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/yy"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/á"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/aa"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/í"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/ii"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/é"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/ee"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -326,6 +427,68 @@
             android:layout_marginStart="2dp"
             android:background="@drawable/custom_btn"
             android:text="@string/b"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/keyboard2"
+                android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ď"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/di"
+            tools:layout_editor_absoluteX="43dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ť"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/ti"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ú"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/uu1"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ů"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/uu2"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ó"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/custom_btn"
+            android:text="@string/OO"/>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/menu"

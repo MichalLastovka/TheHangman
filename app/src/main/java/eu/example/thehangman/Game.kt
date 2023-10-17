@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -13,8 +14,11 @@ import android.os.Looper
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.view.isVisible
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -25,7 +29,7 @@ class Game : AppCompatActivity() {
     val handler = Handler(Looper.getMainLooper())
     private val runnable = object : Runnable {
         override fun run() {
-            timerSeconds ++
+            timerSeconds++
             val hours = timerSeconds / 3600
             val minutes = (timerSeconds % 3600) / 60
             val seconds = timerSeconds % 60
@@ -36,11 +40,12 @@ class Game : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val secret = pickWord()
+        val secret = pickWord(setLength())
         println(secret)
         val secretCharArray = secret.toCharArray().distinct()
         val guessedLetters = mutableListOf<Char>()
@@ -75,17 +80,31 @@ class Game : AppCompatActivity() {
         val b = findViewById<Button>(R.id.b)
         val n = findViewById<Button>(R.id.n)
         val m = findViewById<Button>(R.id.m)
+        val je = findViewById<Button>(R.id.ě)
+        val sch = findViewById<Button>(R.id.š)
+        val tch = findViewById<Button>(R.id.č)
+        val rz = findViewById<Button>(R.id.ř)
+        val zh = findViewById<Button>(R.id.ž)
+        val yy = findViewById<Button>(R.id.ý)
+        val aa = findViewById<Button>(R.id.á)
+        val ii = findViewById<Button>(R.id.í)
+        val ee = findViewById<Button>(R.id.é)
+        val uu1 = findViewById<Button>(R.id.ú)
+        val uu2 = findViewById<Button>(R.id.ů)
+        val di = findViewById<Button>(R.id.ď)
+        val ti = findViewById<Button>(R.id.ť)
+        val oo = findViewById<Button>(R.id.ó)
 
         val buttons =
-            arrayOf(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z)
+            arrayOf(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, je, sch, tch, rz, zh, yy, aa, ii, ee, uu1, uu2, di, ti, oo)
 
         val menuButton = findViewById<Button>(R.id.menu)
-        menuButton.setOnClickListener{
+        menuButton.setOnClickListener {
             val intent = Intent(this, Menu::class.java)
             startActivity(intent)
         }
 
-        fun checkWinLoss(){
+        fun checkWinLoss() {
             val winDialog = Dialog(this)
             winDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             winDialog.setCancelable(false)
@@ -115,7 +134,8 @@ class Game : AppCompatActivity() {
             lossDialog.setCancelable(false)
             lossDialog.setContentView(R.layout.loss_dialog)
             lossDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            val lossOKButton = lossDialog.findViewById<AppCompatImageButton>(R.id.loss_dialog_cancel)
+            val lossOKButton =
+                lossDialog.findViewById<AppCompatImageButton>(R.id.loss_dialog_cancel)
             lossOKButton.setOnClickListener {
                 lossDialog.dismiss()
             }
@@ -129,12 +149,13 @@ class Game : AppCompatActivity() {
                 }
                 startActivity(intent)
             }
-            val backSettingsLoss = lossDialog.findViewById<AppCompatButton>(R.id.loss_back_to_settings)
+            val backSettingsLoss =
+                lossDialog.findViewById<AppCompatButton>(R.id.loss_back_to_settings)
             backSettingsLoss.setOnClickListener {
                 val intent = Intent(this, GameSettings::class.java)
                 startActivity(intent)
             }
-            if ("❤️" !in lifeCounterTv.text){
+            if ("❤️" !in lifeCounterTv.text) {
                 val secretRevealLoss = lossDialog.findViewById<TextView>(R.id.secretRevealLoss)
                 val revealText = "${getString(R.string.secret_reveal)}\n\n$secret"
                 secretRevealLoss.text = revealText
@@ -144,13 +165,16 @@ class Game : AppCompatActivity() {
                 val failSound = MediaPlayer.create(this, R.raw.fail)
                 failSound.start()
                 lossDialog.show()
-            }else if(guessedLetters.size == secretCharArray.size){
+            } else if (guessedLetters.size == secretCharArray.size) {
                 val secretRevealWin = winDialog.findViewById<TextView>(R.id.secretRevealWin)
                 handler.removeCallbacks(runnable)
                 isRunning = false
                 val timer = findViewById<TextView>(R.id.timer)
                 val seconds = timerSeconds % 60
-                val revealText = "${getString(R.string.you_win_reveal)}\n$secret\n\n${getString(R.string.total_time)}\n${timer.text}\n\n${getString(R.string.your_score_is)}\n${countScore(seconds, setDifficulty(), setLength(), lifeCount).toString()}"
+                val revealText =
+                    "${getString(R.string.you_win_reveal)}\n$secret\n\n${getString(R.string.total_time)}\n${timer.text}\n\n${
+                        getString(R.string.your_score_is)
+                    }\n${countScore(seconds, setDifficulty(), secret.length, lifeCount)}"
                 secretRevealWin.text = revealText
                 val fanfareSound = MediaPlayer.create(this, R.raw.fanfare)
                 fanfareSound.start()
@@ -165,16 +189,16 @@ class Game : AppCompatActivity() {
                 ringSound.start()
                 guessedLetters.add(guess)
                 var toDisplay = ""
-                for (char in secret){
-                    toDisplay += if (char in guessedLetters){
+                for (char in secret) {
+                    toDisplay += if (char in guessedLetters) {
                         "$char"
-                    }else {
+                    } else {
                         " _ "
                     }
                 }
                 secretTV.text = toDisplay
                 checkWinLoss()
-            }else{
+            } else {
                 val duckSound = MediaPlayer.create(this, R.raw.duck)
                 duckSound.start()
                 lifeCounterTv.text = (lifeCounterTv.text as String).replaceFirst("❤️", "🖤")
@@ -184,7 +208,7 @@ class Game : AppCompatActivity() {
 
         for (button in buttons) {
             button.setOnClickListener {
-                if (!isRunning){
+                if (!isRunning) {
                     handler.postDelayed(runnable, 1000)
                     isRunning = true
                 }
@@ -198,34 +222,76 @@ class Game : AppCompatActivity() {
             }
         }
     }
+
     private fun setDifficulty(): Int {
         when (intent.getStringExtra("difficulty")) {
             "0" -> {
                 return 10
             }
+
             "1" -> {
                 return 8
             }
+
             "2" -> {
                 return 6
             }
         }
         return 8
     }
-    private fun setLength(): Int {
-        return intent.getStringExtra("length")!!.toInt()
+
+    private fun setLength(): Array<Int> {
+        when (intent.getStringExtra("length")!!) {
+            "0" -> {
+                return arrayOf(4, 5)
+            }
+
+            "1" -> {
+                return arrayOf(6, 7)
+            }
+
+            "2" -> {
+                return arrayOf(8, 10)
+            }
+
+            "3" -> {
+                return arrayOf(11, 14)
+            }
+        }
+        return arrayOf(6, 7)
     }
 
-    private fun pickWord(): String {
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun pickWord(length: Array<Int>): String {
+        if(resources.configuration.locales.get(0).toString() == "en" || resources.configuration.locales.get(0).toString() == "en_US") {
+            val nouns = InputStreamReader(assets.open("nouns.csv"))
+            val readerNouns = BufferedReader(nouns)
+            val nounList = readerNouns.readLines()
+            val mutableNounList =
+                nounList.filter { it.length in length[0]..length[1] }.toMutableList()
+            return mutableNounList.random().uppercase()
+        }else if (resources.configuration.locales.get(0).toString() == "cs"){
+            val czechKeyboard1 = findViewById<LinearLayoutCompat>(R.id.keyboard1)
+            val czechKeyboard2 = findViewById<LinearLayoutCompat>(R.id.keyboard2)
+            czechKeyboard1.isVisible = true
+            czechKeyboard2.isVisible = true
+            val nouns = InputStreamReader(assets.open("nounlist_cze.csv"))
+            val readerNouns = BufferedReader(nouns)
+            val nounList = readerNouns.readLines()
+            val mutableNounList =
+                nounList.filter { it.length in length[0]..length[1] }.toMutableList()
+            return mutableNounList.random().uppercase()
+        }
         val nouns = InputStreamReader(assets.open("nouns.csv"))
         val readerNouns = BufferedReader(nouns)
         val nounList = readerNouns.readLines()
-        val mutableNounList = nounList.filter { it.length == setLength() }.toMutableList()
+        val mutableNounList =
+            nounList.filter { it.length in length[0]..length[1] }.toMutableList()
         return mutableNounList.random().uppercase()
     }
 
-    fun countScore(time:Int, difficulty:Int, length:Int, livesLeft:Int): Int{
-        val score = (livesLeft * 50) - time - (length * 5) - (difficulty * 10)
-        return score
+    private fun countScore(time: Int, difficulty: Int, length: Int, livesLeft: Int): Int {
+        return (livesLeft * 50) - time - (length * 5) - (difficulty * 10)
     }
 }
+

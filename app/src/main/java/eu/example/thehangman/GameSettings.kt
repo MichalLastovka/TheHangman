@@ -12,17 +12,19 @@ class GameSettings : AppCompatActivity() {
         setContentView(R.layout.activity_game_settings)
 
         val difficultyPicker = findViewById<NumberPicker>(R.id.difficultyPicker)
-        val values = arrayOf(getString(R.string.diff_easy), getString(R.string.diff_medium), getString(R.string.diff_hard))
-        difficultyPicker.displayedValues = values
+        val valuesDiff = arrayOf(getString(R.string.diff_easy), getString(R.string.diff_medium), getString(R.string.diff_hard))
+        difficultyPicker.displayedValues = valuesDiff
         difficultyPicker.minValue = 0
-        difficultyPicker.maxValue = values.size - 1
+        difficultyPicker.maxValue = valuesDiff.size - 1
         difficultyPicker.value = 1
 
 
         val lengthPicker = findViewById<NumberPicker>(R.id.lengthPicker)
-        lengthPicker.minValue = 4
-        lengthPicker.maxValue = 14
-        lengthPicker.value = 8
+        val valuesLength = arrayOf(getString(R.string.length_short), getString(R.string.length_medium), getString(R.string.length_long), getString(R.string.length_very_long))
+        lengthPicker.displayedValues = valuesLength
+        lengthPicker.minValue = 0
+        lengthPicker.maxValue = valuesLength.size - 1
+        lengthPicker.value = 1
 
         val startButton = findViewById<Button>(R.id.startButton)
         startButton.setOnClickListener{

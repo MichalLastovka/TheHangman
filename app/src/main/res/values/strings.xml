@@ -40,7 +40,7 @@
     <string name="new_loss">New</string>
     <string name="menu_loss" translatable="false">Menu</string>
     <string name="you_win">You win!</string>
-    <string name="you_win_reveal">You win!</string>
+    <string name="you_win_reveal">"The word is indeed: "</string>
     <string name="new_win">New</string>
     <string name="menu_win" translatable="false">Menu</string>
     <string name="choose_difficulty">Choose difficulty:</string>
@@ -57,4 +57,22 @@
     <string name="diff_hard">Hard</string>
     <string name="total_time">Total time:</string>
     <string name="your_score_is">Your score is:</string>
+    <string name="length_short">Short</string>
+    <string name="length_medium">Medium</string>
+    <string name="length_long">Long</string>
+    <string name="length_very_long">Very long</string>
+    <string name="je" translatable="false">Ě</string>
+    <string name="sh" translatable="false">Š</string>
+    <string name="tch" translatable="false">Č</string>
+    <string name="rzh" translatable="false">Ř</string>
+    <string name="zh" translatable="false">Ž</string>
+    <string name="yy" translatable="false">Ý</string>
+    <string name="aa" translatable="false">Á</string>
+    <string name="ii" translatable="false">Í</string>
+    <string name="ee" translatable="false">É</string>
+    <string name="di" translatable="false">Ď</string>
+    <string name="ti" translatable="false">Ť</string>
+    <string name="uu1" translatable="false">Ú</string>
+    <string name="uu2" translatable="false">Ů</string>
+    <string name="OO" translatable="false">Ó</string>
 </resources>

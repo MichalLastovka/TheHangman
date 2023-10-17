@@ -11,7 +11,7 @@
     <string name="lost_reveal">Prohra!</string>
     <string name="new_loss">Znovu</string>
     <string name="you_win">Výhra!</string>
-    <string name="you_win_reveal">Výhra!</string>
+    <string name="you_win_reveal">"Hledané slovo je skutečně: "</string>
     <string name="new_win">Znovu</string>
     <string name="choose_difficulty">"Vyberte obtížnost: "</string>
     <string name="pick_the_word_length">"Vyberte délku slova: "</string>
@@ -25,4 +25,8 @@
     <string name="diff_hard">Těžká</string>
     <string name="total_time">"Celkový čas: "</string>
     <string name="your_score_is">"Vaše skóre je: "</string>
+    <string name="length_short">Krátké</string>
+    <string name="length_medium">Střední</string>
+    <string name="length_long">Dlouhé</string>
+    <string name="length_very_long">Velmi dlouhé</string>
 </resources>

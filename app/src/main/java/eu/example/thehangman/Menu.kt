@@ -28,30 +28,23 @@ class Menu : AppCompatActivity() {
             var locale : Locale
             if (resources.configuration.locales.get(0).toString() == "en" || resources.configuration.locales.get(0).toString() == "en_US"){
                 locale = Locale("cs")
-                var res = resources
-                var dm = res.displayMetrics
-                var conf = res.configuration
-                conf.locale = locale
-                res.updateConfiguration(conf, dm)
-                var refresh = Intent(Menu@this, Menu::class.java)
-                startActivity(refresh)
+                resources.configuration.setLocale(locale)
+                resources.updateConfiguration(resources.configuration, resources.displayMetrics)
+                startActivity(Intent(this, Menu::class.java))
             }else{
                 languageButton.setImageResource(R.drawable.cze)
                 locale = Locale("en")
-                var res = resources
-                var dm = res.displayMetrics
-                var conf = res.configuration
-                conf.locale = locale
-                res.updateConfiguration(conf, dm)
-                var refresh = Intent(Menu@this, Menu::class.java)
-                startActivity(refresh)
+                resources.configuration.setLocale(locale)
+                resources.updateConfiguration(resources.configuration, resources.displayMetrics)
+                startActivity(Intent(this, Menu::class.java))
             }
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.N)
     fun setFlag(){
         val languageButton = findViewById<AppCompatImageButton>(R.id.language)
-        if (resources.configuration.locales.get(0).toString() == "cs"){
+        if (resources.configuration.locales.get(0).toString()  == "cs"){
             languageButton.setImageResource(R.drawable.eng)
         }else{
             languageButton.setImageResource(R.drawable.cze)
